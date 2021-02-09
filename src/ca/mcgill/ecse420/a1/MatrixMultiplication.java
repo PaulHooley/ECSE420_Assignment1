@@ -6,8 +6,7 @@ public class MatrixMultiplication {
 	private static final int NUMBER_THREADS = 1;
 	private static final int MATRIX_SIZE = 1000;
 
-        public static void main(String[] args) {
-		
+    public static void main(String[] args) {
 		// Generate two random matrices, same size
 		double[][] a = generateRandomMatrix(MATRIX_SIZE, MATRIX_SIZE);
 		double[][] b = generateRandomMatrix(MATRIX_SIZE, MATRIX_SIZE);
@@ -31,9 +30,9 @@ public class MatrixMultiplication {
 	 * */
 	public static double[][] sequentialMultiplyMatrix(double[][] a, double[][] b) {
 		double[][] out = new double[a.length][a[0].length];
-		for(int i = 0; i < a.length; i++){
-			for(int j = 0; j < a[0].length; j++){
-				for(int k = 0; k < a[0].length; k++){
+		for(int i = 0; i < a.length; i++) {
+			for(int j = 0; j < a[0].length; j++) {
+				for(int k = 0; k < a[0].length; k++) {
 					out[i][j] += a[i][k] * b[k][j];
 				}
 			}
@@ -53,19 +52,20 @@ public class MatrixMultiplication {
 		try {
 			ExecutorService ex = Executors.newFixedThreadPool(NUMBER_THREADS);
 
-			for(int i = 0; i < a.length; i++){
-				for(int j = 0; j < a[0].length; j++){
+			for(int i = 0; i < a.length; i++) {
+				for(int j = 0; j < a[0].length; j++) {
 					ex.execute(new multiply(i,j,a,b,out));
 				}
 			}
 			ex.shutdown();
-			while(!ex.isTerminated()){}
+			while(!ex.isTerminated()) {}
 
-		} catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return out;
 	}
+
 	static class multiply implements Runnable {
 
 		private int i;
@@ -83,19 +83,20 @@ public class MatrixMultiplication {
 		}
 	
 		public void run() {
-		  for (int k = 0; k < a[0].length; k++) {
-			out[i][j] += a[i][k] * b[k][j];
-		  }
+			for (int k = 0; k < a[0].length; k++) {
+				out[i][j] += a[i][k] * b[k][j];
+		  	}
 		}
-	  } 
-        /**
-         * Populates a matrix of given size with randomly generated integers between 0-10.
-         * @param numRows number of rows
-         * @param numCols number of cols
-         * @return matrix
-         */
-        private static double[][] generateRandomMatrix (int numRows, int numCols) {
-             double matrix[][] = new double[numRows][numCols];
+	}
+
+	/**
+	 * Populates a matrix of given size with randomly generated integers between 0-10.
+	 * @param numRows number of rows
+	 * @param numCols number of cols
+	 * @return matrix
+	 */
+    private static double[][] generateRandomMatrix (int numRows, int numCols) {
+        double matrix[][] = new double[numRows][numCols];
         for (int row = 0 ; row < numRows ; row++ ) {
             for (int col = 0 ; col < numCols ; col++ ) {
                 matrix[row][col] = (double) ((int) (Math.random() * 10.0));
