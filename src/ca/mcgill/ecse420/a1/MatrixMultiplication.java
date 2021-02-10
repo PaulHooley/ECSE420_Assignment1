@@ -3,8 +3,8 @@ import java.util.concurrent.Executors;
 
 public class MatrixMultiplication {
 	
-	private static final int NUMBER_THREADS = 1;
-	private static final int MATRIX_SIZE = 1000;
+	private static final int NUMBER_THREADS = 6;
+	private static final int MATRIX_SIZE = 4000;
 
     public static void main(String[] args) {
 		// Generate two random matrices, same size
@@ -13,11 +13,11 @@ public class MatrixMultiplication {
 		long startTime = System.currentTimeMillis();
 		sequentialMultiplyMatrix(a, b);
 		long runTime = System.currentTimeMillis()- startTime;
-		System.out.println("Sequential runtime: " + runTime);
+		System.out.println(MATRIX_SIZE + " by " + MATRIX_SIZE + " Sequential runtime: " + runTime);
 		long parStartTime = System.currentTimeMillis();
 		parallelMultiplyMatrix(a, b);	
 		long parRunTime = System.currentTimeMillis() - parStartTime;
-		System.out.println("Parallel runtime: " + parRunTime);
+		System.out.println(NUMBER_THREADS+ " threads Parallel runtime: " + parRunTime);
 
 	}
 	
