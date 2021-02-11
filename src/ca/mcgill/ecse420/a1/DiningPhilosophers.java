@@ -102,6 +102,7 @@ public class DiningPhilosophers {
 					System.out.println(Thread.currentThread().getName() + ": Thinking");
 					synchronized (leftChopstick) {
 						System.out.println(Thread.currentThread().getName() + ": Picked up left chopstick");
+						Thread.sleep(((int) (Math.random() * 200)));
 						synchronized (rightChopstick) {
 							System.out.println(Thread.currentThread().getName() + ": Picked up right chopstick, eating..."); 
 							Thread.sleep(((int) (Math.random() * 200)));
