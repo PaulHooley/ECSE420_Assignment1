@@ -5,7 +5,7 @@ public class Deadlock {
 
         Thread t1 = new Thread("Thread 1") {
             public void run() {
-                try{
+                try {
                     synchronized (resource1) {
                         System.out.println(Thread.currentThread().getName() + " Has Resource 1");
                         sleep(1000);

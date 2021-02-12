@@ -117,7 +117,6 @@ public class DiningPhilosophers {
 				return;
 			}
 		}
-
 	}
 
 	/**
@@ -157,7 +156,6 @@ public class DiningPhilosophers {
 				return;
 			}
 		}
-
 	}
 
 }

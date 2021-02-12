@@ -18,7 +18,6 @@ public class MatrixMultiplication {
 		parallelMultiplyMatrix(a, b);	
 		long parRunTime = System.currentTimeMillis() - parStartTime;
 		System.out.println(NUMBER_THREADS+ " threads Parallel runtime: " + parRunTime);
-
 	}
 	
 	/**
